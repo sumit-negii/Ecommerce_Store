@@ -1,0 +1,26 @@
+package com.ecommerce.service;
+
+import com.ecommerce.entity.Product;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface ProductService {
+
+	public Product saveProduct(Product product);
+
+	//boolean existCategory(String categoryName);
+
+	public List<Product> getAllProducts();
+
+	public Boolean deleteProduct(long id);
+
+	public Optional<Product> findById(long id);
+
+	public Product getProductById(long id);
+	
+	public Product updateProductById(Product product, MultipartFile file);
+	
+	List<Product> findAllActiveProducts(String category);
+}
