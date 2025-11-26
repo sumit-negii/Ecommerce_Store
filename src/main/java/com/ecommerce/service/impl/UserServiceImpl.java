@@ -21,7 +21,6 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
 
 	@Override
 	public User saveUser(User user) {
@@ -44,13 +43,11 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
 		return userRepository.findByEmail(email);
 	}
 
 	@Override
 	public List<User> getAllUsersByRole(String role) {
-		// TODO Auto-generated method stub
 		return userRepository.findByRole(role);
 	}
 
@@ -106,33 +103,25 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void userFailedAttempt(int userId) {
-		// TODO Auto-generated method stub
-
-	}
+	public void userFailedAttempt(int userId) {}
 
 	@Override
 	public void updateUserResetTokenForSendingEmail(String email, String resetToken) {
 		User user = userRepository.findByEmail(email);
 		user.setResetTokens(resetToken);
 		userRepository.save(user);
-		
 	}
 
 	@Override
 	public User getUserByresetTokens(String token) {
-		// TODO Auto-generated method stub
 		return userRepository.findByResetTokens(token);
 	}
 
 	@Override
 	public User updateUserWhileResetingPassword(User userByToken) {
-		// TODO Auto-generated method stub
 		return userRepository.save(userByToken);
 	}
 	
-	
-
 }
 
 

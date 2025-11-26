@@ -34,5 +34,4 @@ public class OrderAddress {
 	
 	private String pinCode;
 	
-	
 }

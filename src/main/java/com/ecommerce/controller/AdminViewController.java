@@ -8,6 +8,7 @@ import com.ecommerce.service.CategoryService;
 import com.ecommerce.service.ProductService;
 import com.ecommerce.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
+@Slf4j
 public class AdminViewController {
 	
 	@Autowired
@@ -50,12 +52,12 @@ public class AdminViewController {
 		if(principal != null) {
 			String currenLoggedInUserEmail = principal.getName();
 			User currentUserDetails = userService.getUserByEmail(currenLoggedInUserEmail);
-			//System.out.println("Current Logged In User is :: ADMIN Controller :: "+currentUserDetails.toString());
+			log.info("Current Logged In User is {} ADMIN Controller :: ", currentUserDetails.toString());
 			model.addAttribute("currentLoggedInUserDetails",currentUserDetails);
 			
 			//for showing user cart count
 			Long countCartForUser = cartService.getCounterCart(currentUserDetails.getId());
-			System.out.println("Admin Cart Count :"+countCartForUser);
+			log.info("Admin Cart Count :{}", countCartForUser);
 			model.addAttribute("countCartForUser", countCartForUser);
 			
 		}
@@ -72,7 +74,6 @@ public class AdminViewController {
 	
 	
 	//CATEGORY-MODULE-START
-	
 	@GetMapping("/add-category")
 	public String addCategory(Model model) {
 		
@@ -96,7 +97,7 @@ public class AdminViewController {
 				
 				File saveFile = new ClassPathResource("static/img").getFile();
 				Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+"category"+File.separator+file.getOriginalFilename());
-				System.out.println("File save Path :"+path);
+				log.info("File save Path :{}", path);
 				
 				Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 				//set Suceesss Msg to Session
@@ -177,21 +178,7 @@ public class AdminViewController {
 			}else {
 				session.setAttribute("errorMsg", "Something wrong on server!");
 			}
-			
-			
-			
-			//OR
-//			if(file!=null) {
-//				String newImageName = file.getOriginalFilename();
-//				System.out.println("File name: "+newImageName);
-//				oldCategory.setCategoryImage(newImageName);
-//			}else {
-//				String oldOriginalImg = oldCategory.getCategoryImage();
-//				System.out.println("File name ELSE: "+oldOriginalImg);
-//				oldCategory.setCategoryImage(oldOriginalImg);
-//			}
-			
-			
+
 		}else {
 			System.out.println("Not Present:");
 		}
@@ -327,6 +314,4 @@ public class AdminViewController {
 		
 	}
 	
-
-
 }

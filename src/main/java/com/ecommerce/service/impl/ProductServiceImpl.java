@@ -22,24 +22,20 @@ public class ProductServiceImpl implements ProductService{
 
 	@Autowired
 	ProductRepository productRepository;
-	
 
 	
 	@Override
 	public Product saveProduct(Product product) {
-		// TODO Auto-generated method stub
 		return productRepository.save(product);
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
-		// TODO Auto-generated method stub
 		return productRepository.findAll();
 	}
 
 	@Override
 	public Boolean deleteProduct(long id) {
-		// TODO Auto-generated method stub
 		 Optional<Product> product = productRepository.findById(id);
 		 if(product.isPresent()) {
 			 productRepository.deleteById(product.get().getId());
@@ -52,13 +48,11 @@ public class ProductServiceImpl implements ProductService{
 
 	@Override
 	public Optional<Product> findById(long id) {
-		// TODO Auto-generated method stub
 		return Optional.empty();
 	}
 
 	@Override
 	public Product getProductById(long id) {
-		// TODO Auto-generated method stub
 		return productRepository.findById(id).orElse(null);
 	}
 

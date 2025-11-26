@@ -41,5 +41,4 @@ public class CommonUtils {
 		return fullUrl.replace(request.getServletPath(), "");
 	}
 
-	
 }

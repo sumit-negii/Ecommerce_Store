@@ -77,16 +77,13 @@ public class CartServiceImpl implements CartService {
 			System.out.println("totalOrderPrice is :"+totalOrderPrice);
 			updatedCartList.add(cart);
 		}
-		
-	 
 	 
 		return updatedCartList;
 	}
 
 	@Override
 	public Long getCounterCart(Long userId) {
-		Long cartCountByUserId = cartRepository.countByUserId(userId);
-		return cartCountByUserId;
+        return cartRepository.countByUserId(userId);
 	}
 
 	@Override
@@ -110,8 +107,6 @@ public class CartServiceImpl implements CartService {
 			cart.get().setQuantity(quantity);
 			cartRepository.save(cart.get());
 		}
-		
-		
 		
 		return false;
 	}

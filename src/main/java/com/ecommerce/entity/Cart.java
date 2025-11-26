@@ -19,7 +19,7 @@ public class Cart {
 	private User user;
 	
 	@ManyToOne
-	private com.ecommerce.entity.Product product;
+	private Product product;
 	
 	private Integer quantity;
 	

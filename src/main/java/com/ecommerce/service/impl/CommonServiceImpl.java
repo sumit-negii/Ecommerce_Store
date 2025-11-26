@@ -19,7 +19,6 @@ public class CommonServiceImpl implements CommonService {
 		
 		session.removeAttribute("successMsg");
 		session.removeAttribute("errorMsg");
-		
 	}
 
 }

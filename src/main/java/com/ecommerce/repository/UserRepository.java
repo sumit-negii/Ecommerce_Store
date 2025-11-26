@@ -10,9 +10,9 @@ import com.ecommerce.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	
-	public User findByEmail(String email);
+	User findByEmail(String email);
 
-	public List<User> findByRole(String role);
+	List<User> findByRole(String role);
 
-	public User findByResetTokens(String token);
+	User findByResetTokens(String token);
 }
